@@ -8,7 +8,7 @@ import Accordion from "../../components/Accordion/Accordion";
 import NavigationToggle from "../../components/UI/NavigationToggle/NavigationToggle";
 import ListItem from "./ListItem/ListItem";
 import Button from "../../components/UI/Button/Button";
-import axios from "axios";
+import axiosOnce from "../../axiosOnce";
 
 Geocode.setApiKey("AIzaSyDJtTqqrF_Sjt_aFLtWLqnSZ_1d93sMmKc");
 // Geocode.enableDebug();
@@ -46,14 +46,17 @@ class WeatherApp extends Component {
 
   loadWeatherStations = ({ne, sw}) => {
     const coordinates = [ne.lng, ne.lat, sw.lng, sw.lat, this.state.zoom];
-    axios.get('http://api.openweathermap.org/data/2.5/box/city', {
+    var config = {
+      method: "get",
+      url: "http://api.openweathermap.org/data/2.5/box/city",
       params: {
         bbox: coordinates.join(','),
         cluster: 'yes',
         format: 'json',
         appid: '068fa426436e6285982b85ab0f1c3f83'
       }
-    }).then((response) => {
+    };
+    axiosOnce(config).then((response) => {
       if (response.data.list) {
         this.setState({weatherStations: response.data.list});
       }
