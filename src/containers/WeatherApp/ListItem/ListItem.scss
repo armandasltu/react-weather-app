@@ -1,0 +1,19 @@
+@import '../../../global';
+
+.list-item {
+  border: 1px solid $c-gray;
+  border-radius: 5px;
+  background-color: $c-light-blue;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background-color: $c-gray;
+  }
+  &__header {
+    font-weight: bold;
+  }
+  &__content {
+    margin-top: 0.5rem;
+  }
+}

@@ -1,0 +1,40 @@
+@import '../../../global';
+
+$markerWidth: 48px;
+$markerHeight: 40px;
+
+$originX: $markerWidth * .5;
+$originY: $markerHeight * .5;
+
+.marker {
+  position: absolute;
+  cursor: pointer;
+  width: $markerWidth;
+  height: $markerHeight;
+  top: -45px;
+  left: -$originX;
+  transform-origin: $originX $originY;
+  margin: 0;
+  padding: 0;
+  color: $c-black;
+  &:hover &__description {
+    position: relative;
+    background-color: $c-white;
+    width: 8rem;
+    height: auto;
+    border-radius: 5px;
+    padding: 5px 10px;
+    top: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+    z-index: 100;
+    h3 {
+      margin-top: 5px;
+    }
+  }
+  &:not(:hover) &__description {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+}

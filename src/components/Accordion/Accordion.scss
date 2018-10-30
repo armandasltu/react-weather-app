@@ -1,0 +1,32 @@
+@import '../../global';
+
+.accordion {
+  &.active &_item__header {
+    &::after {
+      @include rotate(180);
+    }
+  }
+  &_item__header {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-bottom: 1px solid $c-gray;
+    position: relative;
+    &::after {
+      @include transition(all 0.2s ease-out);
+      content: '';
+      background: url("arrow.svg") center center no-repeat;
+      background-size: contain;
+      width: 45px;
+      height: 26px;
+      position: absolute;
+      right: 0.5rem;
+      top: 1rem;
+    }
+  }
+  &_item__content {
+    padding: 1rem;
+    border-bottom: 1px solid $c-gray;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../../global';
+
+.button {
+  background-color: $c-blue;
+  padding: 0.5rem 1rem 0.65rem;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  &.green {
+    background-color: $c-green;
+  }
+  &.orange {
+    background-color: $c-orange;
+  }
+}
