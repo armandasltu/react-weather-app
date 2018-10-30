@@ -165,7 +165,8 @@ class WeatherApp extends Component {
 
   render() {
     const weatherStationsList = this.state.weatherStations.map(item => {
-      return <ListItem key={item.id} title={item.name}>
+      const icon = 'http://openweathermap.org/img/w/' + item.weather[0].icon  + '.png';
+      return <ListItem key={item.id} title={item.name} icon={icon}>
         <p>
           Temperature: {item.main.temp}<br/>
           Pressure: {item.main.pressure}<br/>
@@ -177,7 +178,8 @@ class WeatherApp extends Component {
     });
 
     const savedWeatherStationsList = this.state.savedWeatherStations.map(item => {
-      return <ListItem key={item.id} title={item.name}>
+      const icon = 'http://openweathermap.org/img/w/' + item.weather[0].icon  + '.png';
+      return <ListItem key={item.id} title={item.name} icon={icon}>
         <p>
           Temperature: {item.main.temp}<br/>
           Pressure: {item.main.pressure}<br/>

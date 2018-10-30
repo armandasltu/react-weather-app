@@ -12,8 +12,19 @@
   }
   &__header {
     font-weight: bold;
+    position: relative;
+    padding-right: 3rem;
   }
   &__content {
     margin-top: 0.5rem;
+  }
+  &__icon {
+    position: absolute;
+    width: 50px;
+    height: 45px;
+    right: 0;
+    top: -0.9rem;
+    float: right;
+    display: block;
   }
 }
