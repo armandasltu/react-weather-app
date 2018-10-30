@@ -26,7 +26,7 @@ class ListItem extends Component {
     return <div className="list-item" onClick={this.handleClick}>
       <div className="list-item__header">
         {this.props.title}
-        <div className="list-item__icon" style={iconStyle}></div>
+        <div className="list-item__icon" style={iconStyle}><span>{this.props.temperature}</span></div>
       </div>
       {content}
     </div>;
