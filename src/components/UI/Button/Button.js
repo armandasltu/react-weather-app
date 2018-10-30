@@ -11,6 +11,9 @@ const Button = (props) => {
     case 'orange':
       classes.push('orange');
       break;
+    case 'pink':
+      classes.push('pink');
+      break;
     default:
   }
 

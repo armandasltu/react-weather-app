@@ -14,7 +14,7 @@ class Accordion extends Component {
     let content = null;
     if (this.state.isVisible) {
       content = <div className="accordion_item__content">
-        {this.props.children}
+        {this.props.children.length > 0 ? this.props.children : 'No results.'}
       </div>;
     }
     return <div className={this.state.isVisible ? 'accordion active' : 'accordion'}>

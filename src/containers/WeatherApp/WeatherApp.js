@@ -59,6 +59,8 @@ class WeatherApp extends Component {
     axiosOnce(config).then((response) => {
       if (response.data.list) {
         this.setState({weatherStations: response.data.list});
+      } else {
+        this.setState({weatherStations: []});
       }
     }).catch(function (error) {
       console.log(error);
@@ -127,10 +129,27 @@ class WeatherApp extends Component {
     this.loadLocationByAddress(this.state.search.city + ' ' + this.state.search.country);
   };
 
+  savedLocationExist = (id) => {
+    const index = this.state.savedWeatherStations.findIndex(a => a.id === id);
+    return index !== -1;
+  };
+
   saveLocation = (location) => {
-    // @TODO: check if already exist
-    this.setState({savedWeatherStations: [...this.state.savedWeatherStations, location]});
-    localStorage.setItem('weatherlocations', JSON.stringify([...this.state.savedWeatherStations, location]));
+    if(!this.savedLocationExist(location.id)) {
+      this.setState({savedWeatherStations: [...this.state.savedWeatherStations, location]});
+      localStorage.setItem('weatherlocations', JSON.stringify([...this.state.savedWeatherStations, location]));
+    }
+  };
+
+  removeLocation = (location) => {
+    const newState = this.state.savedWeatherStations;
+    const index = newState.findIndex(a => a.id === location.id);
+
+    if (index === -1) return;
+    newState.splice(index, 1);
+
+    this.setState({savedWeatherStations: newState});
+    localStorage.setItem('weatherlocations', JSON.stringify(newState));
   };
 
   navigationToggleHandler = () => {
@@ -164,6 +183,7 @@ class WeatherApp extends Component {
           Pressure: {item.main.pressure}<br/>
           Humidity: {item.main.humidity}
         </p>
+        <Button type={'pink'} clicked={() => this.removeLocation(item)}>Remove</Button>
         <Button clicked={() => this.loadLocationByCoordinates(item.coord.Lat, item.coord.Lon)}>Show on map</Button>
       </ListItem>
     });
