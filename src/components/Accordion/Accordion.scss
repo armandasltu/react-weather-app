@@ -6,6 +6,7 @@
       @include rotate(180);
     }
   }
+
   &_item__header {
     cursor: pointer;
     font-size: 1.2rem;
@@ -13,7 +14,10 @@
     padding: 1rem;
     border-bottom: 1px solid $c-gray;
     position: relative;
-    &::after {
+    &:hover {
+      background-color: #3A3B5D;
+    }
+    &:after {
       @include transition(all 0.2s ease-out);
       content: '';
       background: url("arrow.svg") center center no-repeat;

@@ -31,10 +31,8 @@ class WeatherApp extends Component {
     },
     zoom: 4,
     initialPosition: null,
-    search: {
-      country: '',
-      city: '',
-    }
+    searchCountry: '',
+    searchCity: '',
   };
 
   componentDidMount() {
@@ -114,19 +112,20 @@ class WeatherApp extends Component {
 
   countrySelectHandler = (event) => {
     if (typeof event.target.value !== 'undefined') {
-      this.setState({search: {country: event.target.value}});
+      this.setState({searchCountry: event.target.value});
       this.loadLocationByAddress(event.target.value);
     }
   };
 
   citySearchHandler = (event) => {
     if (typeof event.target.value !== 'undefined') {
-      this.setState({search: {city: event.target.value}});
+      this.setState({searchCity: event.target.value});
     }
   };
 
   searchButtonHandler = () => {
-    this.loadLocationByAddress(this.state.search.city + ' ' + this.state.search.country);
+    const location = [this.state.searchCity, this.state.searchCountry];
+    this.loadLocationByAddress(location.join(' '));
   };
 
   savedLocationExist = (id) => {
